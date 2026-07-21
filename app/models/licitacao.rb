@@ -1,0 +1,2 @@
+class Licitacao < ApplicationRecord
+end

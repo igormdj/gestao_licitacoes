@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero: MyString
+  orgao: MyString
+  objeto: MyText
+  valor: 9.99
+  data_abertura: 2026-07-21 10:48:21
+
+two:
+  numero: MyString
+  orgao: MyString
+  objeto: MyText
+  valor: 9.99
+  data_abertura: 2026-07-21 10:48:21
