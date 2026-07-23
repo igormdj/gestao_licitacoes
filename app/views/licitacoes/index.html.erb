@@ -1,4 +1,36 @@
 <div class="container mt-4">
-    <h1>Lista de Dispensas de Licitações</h1>
-    <p class="text-muted">Aqui estão listadas todas as dispensas de licitações registradas.</p>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Lista de Licitações </h1>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Número</th>
+            <th>Órgão</th>
+            <th>Objeto</th>
+            <th>Valor</th>
+            <th>Data de Abertura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @licitacoes.each do |licitacao| %>
+            <tr>
+              <td><%= licitacao.numero %></td>
+              <td><%= licitacao.orgao %></td>
+              <td><%= licitacao.objeto %></td>
+              <td>R$ <%= licitacao.valor %></td>
+              <td><%= licitacao.data_abertura %></td>
+            </tr>
+          <% end %>
+        <tbody>
+      </table>
+
+      <% if @licitacoes.empty? %>
+        <p class="text-center text-muted my-4">Nenhuma licitação cadastrada ainda.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 class LicitacoesController < ApplicationController
   def index
+    @licitacoes = Licitacao.all
   end
 
   def new
