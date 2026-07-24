@@ -1,2 +1,44 @@
-<h1>Licitacoes#new</h1>
-<p>Find me in app/views/licitacoes/new.html.erb</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="mb-4">Nova Licitação</h2>
+
+          <%= form_with(model: @licitacao, local: true) do |form| %>
+            <div class="mb-3">
+              <%= form.label :numero, "Número da Licitação", class: "form-label" %>
+              <%= form.text_field :numero, class: "form-control", placeholder: "Ex: 001/2026" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :orgao, "Órgão Público", class: "form-label" %>
+              <%= form.text_field :orgao, class: "form-control", placeholder: "Ex: Prefeitura Municipal" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :objeto, "Objeto da Licitação", class: "form-label" %>
+              <%= form.text_area :objeto, class: "form-control", rows: 3, placeholder: "Descreva o objeto..." %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :valor, "Valor Estimado (R$)", class: "form-label" %>
+              <%= form.number_field :valor, step: "0.01", class: "form-control", placeholder: "0.00" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :data_abertura, "Data de Abertura", class: "form-label" %>
+              <%= form.datetime_local_field :data_abertura, class: "form-control" %>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <%= link_to "Voltar", licitacoes_path, class: "btn btn-secondary" %>
+              <%= form.submit "Salvar Licitação", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
