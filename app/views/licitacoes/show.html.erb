@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Detalhes da Licitação: <%= @licitacao.numero %></h2>
+
+          <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item"><strong>Órgão:</strong> <%= @licitacao.orgao %></li>
+            <li class="list-group-item"><strong>Objeto:</strong> <%= @licitacao.objeto %></li>
+            <li class="list-group-item"><strong>Valor Estimado:</strong> R$ <%= @licitacao.valor %></li>
+            <li class="list-group-item"><strong>Data de Abertura:</strong> <%= @licitacao.data_abertura %></li>
+          </ul>
+
+          <div class="d-flex justify-content-between">
+            <%= link_to "Voltar para a Lista", licitacoes_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

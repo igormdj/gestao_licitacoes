@@ -3,6 +3,10 @@ class LicitacoesController < ApplicationController
     @licitacoes = Licitacao.all
   end
 
+  def show
+    @licitacao = Licitacao.find(params[:id])
+  end
+
   def new
     @licitacao = Licitacao.new
   end
