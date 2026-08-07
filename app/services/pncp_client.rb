@@ -16,4 +16,18 @@ class PncpClient
             []
         end
     end
+
+    def self.importar_licitacoes!
+        dados = buscar_dados_externos
+
+        dados.each do |item|
+            Licitacao.create(
+                numero: "Edital-#{item['id']}",
+                orgao: "Órgão Teste API",
+                objeto: item['title'],
+                valor: 1000.00,
+                data_abertura: Time.current
+            )
+        end
+    end
 end
