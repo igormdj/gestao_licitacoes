@@ -17,8 +17,14 @@ class PncpClient
         end
     end
 
+    def self.buscar_licitacoes_relevantes
+        posts = buscar_dados_externos
+
+        posts.select { |item| item['title'].present? && item['title'].length > 20 }
+    end
+
     def self.importar_licitacoes!
-        dados = buscar_dados_externos
+        dados = buscar_licitacoes_relevantes
 
         dados.each do |item|
             Licitacao.create(
