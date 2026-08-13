@@ -1,6 +1,6 @@
 class LicitacoesController < ApplicationController
   def index
-    @licitacoes = Licitacao.all
+    @licitacoes = Licitacao.all.order(created_at: :desc)
   end
 
   def show

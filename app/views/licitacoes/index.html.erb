@@ -1,40 +1,64 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Lista de Licitações </h1>
-    <%= link_to "Nova Licitação", new_licitaco_path, class: "btn btn-primary" %> 
+<div class="row mb-4">
+  <div class="col-md-12 d-flex justify-content-between align-items-center">
+    <div>
+      <h1 class="h3 fw-bold text-dark">Painel de Dispensas - Goiás (PNCP)</h1>
+      <p class="text-muted">Oportunidades ativas de licitações e dispensas filtradas para o Estado de Goiás.</p>
+    </div>
+    <!-- Botão para forçar atualização/importação futura se desejar -->
+    <span class="badge bg-success p-2 fs-6">Status: Sistema Sincronizado</span>
   </div>
+</div>
 
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <table class="table table-striped table-hover">
+<!-- Cards de Resumo Rápido -->
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 bg-light">
+      <div class="card-body">
+        <h5 class="card-title text-muted fs-6">Total de Oportunidades</h5>
+        <p class="card-text fs-4 fw-bold text-primary"><%= @licitacoes.count %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabela de Licitações Estilizada com Bootstrap -->
+<div class="card shadow-sm border-0">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
         <thead class="table-dark">
           <tr>
-            <th>Número</th>
-            <th>Órgão</th>
-            <th>Objeto</th>
-            <th>Valor</th>
-            <th>Data de Abertura</th>
+            <th class="py-3 ps-3">Número / Edital</th>
+            <th class="py-3">Órgão Público</th>
+            <th class="py-3">Objeto da Dispensa</th>
+            <th class="py-3">Valor Estimado</th>
+            <th class="py-3">Data de Abertura</th>
+            <th class="py-3 text-end pe-3">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <% @licitacoes.each do |licitacao| %>
+          <% if @licitacoes.any? %>
+            <% @licitacoes.each do |licitacao| %>
+              <tr>
+                <td class="ps-3 fw-semibold text-primary"><%= licitacao.numero %></td>
+                <td><%= licitacao.orgao %></td>
+                <td><span class="d-inline-block text-truncate" style="max-width: 350px;" title="<%= licitacao.objeto %>"><%= licitacao.objeto %></span></td>
+                <td class="fw-bold text-success">
+                  <%= number_to_currency(licitacao.valor, unit: "R$ ", separator: ",", delimiter: ".") %>
+                </td>
+                <td><%= licitacao.data_abertura.strftime("%d/%m/%Y às %H:%M") %></td>
+                <td class="text-end pe-3">
+                  <%= link_to 'Ver Detalhes', licitaco_path(licitacao), class: 'btn btn-outline-primary btn-sm' %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <td><%= licitacao.numero %></td>
-              <td><%= licitacao.orgao %></td>
-              <td><%= licitacao.objeto %></td>
-              <td>R$ <%= licitacao.valor %></td>
-              <td><%= licitacao.data_abertura %></td>
-              <td class="text-end">
-                <%= link_to "Ver Detalhes", licitaco_path(licitacao), class: "btn btn-sm btn-info text-white" %>
-              </td>
+              <td colspan="6" class="text-center py-4 text-muted">Nenhuma dispensa encontrada no banco de dados.</td>
             </tr>
           <% end %>
-        <tbody>
+        </tbody>
       </table>
-
-      <% if @licitacoes.empty? %>
-        <p class="text-center text-muted my-4">Nenhuma licitação cadastrada ainda.</p>
-      <% end %>
     </div>
   </div>
 </div>
