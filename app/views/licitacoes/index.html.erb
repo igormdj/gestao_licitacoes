@@ -9,6 +9,22 @@
   </div>
 </div>
 
+<div class="row mb-4">
+  <div class="col-md-12">
+    <div class="card shadow-sm border-0 bg-light p-3">
+      <%= form_with url: licitacoes_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
+        <div class="col-md-10">
+          <%= f.text_field :q, value: params[:q], placeholder: "Pesquisar por órgão (ex: Prefeitura, Secretaria) ou objeto da dispensa...", class: "form-control" %>
+        </div>
+        <div class="col-md-2 d-grid">
+          <%= f.submit "Filtrar", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
 <!-- Cards de Resumo Rápido -->
 <div class="row mb-4">
   <div class="col-md-4">

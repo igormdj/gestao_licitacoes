@@ -1,6 +1,10 @@
 class LicitacoesController < ApplicationController
   def index
-    @licitacoes = Licitacao.all.order(created_at: :desc)
+    if params[:q].present?
+      @licitacoes = Licitacao.where("orgao ILIKE ? OR objeto ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").order(created_at: :desc)
+    else
+      @licitacoes = Licitacao.all.order(created_at: :desc)
+    end
   end
 
   def show
