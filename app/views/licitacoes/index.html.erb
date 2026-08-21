@@ -77,4 +77,10 @@
       </table>
     </div>
   </div>
+  <div class="card-footer bg-white py-3 d-flex justify-content-center">
+    <%= paginate @licitacoes, 
+        window: 2, 
+        outer_window: 1, 
+        pagination_class: "pagination mb-0" %>
+  </div>
 </div>

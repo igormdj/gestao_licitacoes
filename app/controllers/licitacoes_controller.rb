@@ -2,8 +2,9 @@ class LicitacoesController < ApplicationController
   def index
     if params[:q].present?
       @licitacoes = Licitacao.where("orgao ILIKE ? OR objeto ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%").order(created_at: :desc)
+      .page(params[:page]).per(10)
     else
-      @licitacoes = Licitacao.all.order(created_at: :desc)
+      @licitacoes = Licitacao.all.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
